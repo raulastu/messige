@@ -39,11 +39,11 @@ function drawMessiMessage(){
 	imageObj.onload= function(){
 
 
-		context.drawImage(imageObj,0,0);	
-		context.save();
-		context.font = '14pt Nothing You Could Do';
-	    context.translate(canvas.width/2,canvas.height/2);
-		context.rotate(-Math.PI/34);
+	 context.drawImage(imageObj,0,0);	
+	 context.save();
+	 context.font = '14pt Nothing You Could Do';
+	 context.translate(canvas.width/2,canvas.height/2);
+	 context.rotate(-Math.PI/34);
 	    
 	    // context.fillStyle='#5D310C';
 	    context.fillStyle='#6E421B';
@@ -56,7 +56,7 @@ function drawMessiMessage(){
 	    // document.getElementById('para').innerHtml='xx'
 	    // context.fillText(message, -30, 80);
 	    context.restore();
-
+      context.fillText("Messige.com", 500, 300);
 	}
 	canvas.width=600;
 	canvas.height=450;  
