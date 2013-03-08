@@ -1,0 +1,64 @@
+@font-face {
+  font-family: 'Cedarville Cursive';
+  font-style: normal;
+  font-weight: 400;
+    src: local('Cedarville Cursive'), local('Cedarville-Cursive'), url(http://themes.googleusercontent.com/static/fonts/cedarvillecursive/v3/cuCe6HrkcqrWTWTUE7dw-2YEW1clNUI6vvJhfGrjWFk.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'), url(http://themes.googleusercontent.com/static/fonts/inconsolata/v6/BjAYBlHtW3CJxDcjzrnZCLrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Amatic SC Regular'), local('AmaticSC-Regular'), url(http://themes.googleusercontent.com/static/fonts/amaticsc/v3/DPPfSFKxRTXvae2bKDzp5LO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+
+
+@font-face {
+  font-family: 'Julee';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Julee-Regular'), url(http://themes.googleusercontent.com/static/fonts/julee/v3/vBb05ipqEwom2WrdC0upJKCWcynf_cDxXwCLxiixG1c.woff) format('woff');
+}
+@font-face {
+  font-family: 'Nothing You Could Do';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nothing You Could Do'), local('NothingYouCouldDo'), url(http://themes.googleusercontent.com/static/fonts/nothingyoucoulddo/v3/jpk1K3jbJoyoK0XKaSyQAXEXHkG8fPQqt_tcmM6oBg_3rGVtsTkPsbDajuO5ueQw.woff) format('woff');
+}
+
+/**/
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu'), url(http://themes.googleusercontent.com/static/fonts/ubuntu/v4/vRvZYZlUaogOuHbBTT1SNevvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+
+
+
+@font-face {
+  font-family: 'Wendy One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Wendy One'), local('WendyOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/wendyone/v1/oRf9i5HKN7RZoSnys4E2urO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Chela One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Chela One'), local('ChelaOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/chelaone/v1/DHUBEAsCcSRMyWTJ6sisfrO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Trochut';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Trochut Bold'), local('Trochut-Bold'), url(http://themes.googleusercontent.com/static/fonts/trochut/v1/1Tp4PxbQjwda9Ht-wsKPZr3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
+}
