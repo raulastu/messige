@@ -13,71 +13,92 @@ function drawMessiMessage(){
 
 
 	var canvas = document.getElementById('canv');
-    var context = canvas.getContext('2d');
-
+  var context = canvas.getContext('2d');
+  context.font = '14pt Nothing You Could Do';
 	var len = context.measureText(message).width;
+
 	if(len>maxWidth*4)
 			return;
-	context.font = '14pt Nothing You Could Do';
-	var lines = getLines(context,message,x,80,maxWidth,24);
-    console.log("LINES"+lines);
-    var y = -1;
-    if(lines == 1){
-    	y=80+25;
-    }else if(lines == 2){
-    	y=80+10;
-    }else if(lines == 3){
-    	y=80;
-    }else if(lines == 4){
-    	y=72;
-    }else{
-    	return;
-    }
-    var xar = [x,-11.-10,-10,-10];
-    var widths = [maxWidth,132, 100, 120,130];
+
+  var widths = [133,110, 100, 120,130];
+	var lines = getLines(context,message,x,80,widths,24);
+  console.log("LINES"+lines);
+  var y = -1;
+  if(lines == 1){
+  	y=80+25;
+  }else if(lines == 2){
+  	y=80+10;
+  }else if(lines == 3){
+  	y=80;
+  }else if(lines == 4){
+  	y=72;
+  }else{
+  	return;
+  }
+  var linkMsg="";
+  for(var i=0;i<message.length;i++){
+    linkMsg+=message.charCodeAt(i)+"_";
+  }
+  document.getElementById('link').value="messigex.appspot.com?d="+linkMsg;
+
+  var xar = [-10, 5, 0 ,-10,-10];
 	var imageObj = new Image();
+
 	imageObj.onload= function(){
 
-
 	 context.drawImage(imageObj,0,0);	
+   // context.fillStyle='white';
+   // context.fillText("Messige.com", 500, 400);
+
 	 context.save();
 	 context.font = '14pt Nothing You Could Do';
 	 context.translate(canvas.width/2,canvas.height/2);
 	 context.rotate(-Math.PI/34);
 	    
-	    // context.fillStyle='#5D310C';
-	    context.fillStyle='#6E421B';
-	    // context.fillStyle='#946843';
-		// context.fillStyle='#835732';
+    // context.fillStyle='#5D310C';
+    context.fillStyle='#6E421B';
+    // context.fillStyle='#946843';
+	// context.fillStyle='#835732';
 
-	    
-	    wrapText(context,message,xar,y,widths,24);
+    
+    wrapText(context,message,xar,y,widths,24);
 
-	    // document.getElementById('para').innerHtml='xx'
-	    // context.fillText(message, -30, 80);
-	    context.restore();
-      context.fillText("Messige.com", 500, 300);
+    // document.getElementById('para').innerHtml='xx'
+    // context.fillText(message, -30, 80);
+    context.restore();
+    // context.fillText("Messige.com", 500, 300);
+
+    // save canvas image as data url (png format by default)
+    var dataURL = canvas.toDataURL();
+
+    // set canvasImg image src to dataURL
+    // so it can be saved as an image
+    document.getElementById('canvasImg').src = dataURL;
+
 	}
 	canvas.width=600;
 	canvas.height=450;  
 	// imageObj.width="100";
 	// imageObj.height="100";
-	imageObj.src="img/messi_clear_opt.png"; 	
+	imageObj.src="img/Optimized-canvas.png"; 	
 }
 
-  function wrapText(context, text, x, y, maxWidth, lineHeight) {
+  function wrapText(context, text, xar, y, maxWidth, lineHeight) {
     var _words = text.split(' ');
     var line = '';
     var testWidth=1;
-    var words = getWords(context,_words,maxWidth);
+    var words = getWords(context, _words, maxWidth);
     var lines=0;
+    console.log(text);
+    console.log(words.join());
     for(var n = 0; n < words.length; n++) {
       var testLine = line + words[n];
       var metrics = context.measureText(testLine);
       testWidth = metrics.width;
+      // console.log("testWidth " + testWidth+" maxWidth[lines] "+maxWidth[lines]);
       if(testWidth > maxWidth[lines]) {
       	var xx = (maxWidth[lines] - context.measureText(line).width)/2;
-        context.fillText(line, x[lines]+xx, y);
+        context.fillText(line, xar[lines]+xx, y);
         lines++;
         line = words[n];
         y += lineHeight;
@@ -87,12 +108,12 @@ function drawMessiMessage(){
       }
     }
     var xx = (maxWidth[lines] - context.measureText(line).width)/2;
-    context.fillText(line, x[lines]+xx, y);
+    context.fillText(line, xar[lines]+xx, y);
   }
 
   function getLines(context, text, x, y, maxWidth, lineHeight) {
     var _words = text.split(' ');
-	var words = getWords(context,_words,maxWidth);
+	  var words = getWords(context,_words,maxWidth);
     var lines=1;
     var line = '';
     console.log(text);
@@ -101,10 +122,11 @@ function drawMessiMessage(){
       var testLine = line + words[n];
       var metrics = context.measureText(testLine);
       var testWidth = metrics.width;
-      if(testWidth > maxWidth) {
-      	lines++;
+      console.log("testWidth " + testWidth+" maxWidth[lines] "+maxWidth[lines-1]);
+      if(testWidth > maxWidth[lines-1]) {
         line = words[n];
         y += lineHeight;
+        lines++;
       }
       else {
         line = testLine;
@@ -125,13 +147,14 @@ function drawMessiMessage(){
     	if(swidth > maxWidth[lineIndex]){
     		var str=_words[i];
     		var j=0;
-    		while(str.length>0){
+    		while(str.length>maxStrLen){
     			console.log("str="+str);
     			words.push(str.substring(0,Math.min(str.length,maxStrLen)));
     			str= str.substring(Math.min(maxStrLen,str.length),str.length);
     			console.log("str2="+str);
     			j++;
     		}
+        words.push(str+' ');
     		lineIndex++;
     	}else{
     		words.push(_words[i]+' ');

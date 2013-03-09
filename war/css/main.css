@@ -318,7 +318,7 @@ textarea {
     /*float: left;*/
     border-radius: 5px;
     border-style: solid;
-    width: 300px;
+    width: 430px;
     position: relative;
     line-height: 24px;
     margin: 0px;
@@ -399,6 +399,7 @@ textarea {
 .siteHolder{
     width:600px;
     margin: 0 auto;
+    padding-bottom: 200px;
     /*padding-top: 173px;*/
     /*background: url(images/harlemify-bg.png) no-repeat top left; */
     padding-left: 18px;

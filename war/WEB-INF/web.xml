@@ -4,16 +4,26 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    version="2.5"> 
-  <display-name>New Project Template</display-name>
+  <display-name>Messagi App</display-name>
   
   <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>org.example.HelloAppEngineServlet</servlet-class>
+    <servlet-name>genlink</servlet-name>
+    <servlet-class>com.messagi.GenLinkServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/helloappengine</url-pattern>
+    <servlet-name>genlink</servlet-name>
+    <url-pattern>/genlink</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>loadlink</servlet-name>
+    <servlet-class>com.messagi.LoadLinkServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>loadlink</servlet-name>
+    <url-pattern>/loadlink</url-pattern>
   </servlet-mapping>
 
   <!--

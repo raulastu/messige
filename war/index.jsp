@@ -27,9 +27,37 @@
 
     </head>
     <%
-        String message = request.getParameter("m");
+        String message = "";
+        // if(request.getAttribute("m")!=null){
+        //     message = request.getAttribute("m")+"";
+        // }
+        if(request.getParameter("m")!=null){
+            message = request.getParameter("m");
+        }
+        
         message=message==null?"":message;
+        String message1 = request.getParameter("d");
+
+        if(message1 !=null){
+            message="";
+            String []a=message1.split("_");
+            for(int i=0;i<a.length;i++){
+                message+= (char)Integer.parseInt((a[i]));
+            }
+            // message=message1;
+        }
+        
     %>
+    <!-- 420051148085813 -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420051148085813";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
     <body>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
@@ -45,11 +73,20 @@
             <h2 style="font-family: Ubuntu; 
                 margin:0;"> 
                 Make Messi message you!</h2>
-            <canvas id="canv" ></canvas>
-            <div style="font-family: Ubuntu">Just start typing, see what messi has, and post it on fb</div>
-            <input id="message" 
-                maxlength="41"  
-                class="txtMsg" onkeyup="drawMessiMessage()" type="text" value="<%=message%>"/>
+            <fb:like href="http://messige.com" layout="standard" width="100px" show_faces="true" font="verdana"></fb:like>
+
+            <canvas id="canv" style="display:none;"></canvas>
+            <img id="canvasImg" alt="Right click to save me!">
+
+            <div style="font-family: Ubuntu">Just type whatever you want, save the image (right click), and share it!</div>
+            <form action="genlink" method="POST">
+                <input id="message" 
+                    maxlength="41"  
+                    class="txtMsg" onkeyup="drawMessiMessage()" type="text"value="<%=message%>"/>
+                <input id="link" 
+                     type="text"value="<%=message%>"/>
+                <input type="submit" value="get link"></input>
+            </form>
         </div>
         
         <!-- Add your site or application content here -->
