@@ -10,7 +10,7 @@ function drawMessiMessage(){
 	// draw();
 	// return;
 	var message = document.getElementById('message').value;
-	console.log(document.getElementById('message').value.length);
+	// console.log(document.getElementById('message').value.length);
 
 
 	var canvas = document.getElementById('canv');
@@ -42,7 +42,11 @@ function drawMessiMessage(){
   for(var i=1;i<message.length;i++){
     linkMsg+="_"+message.charCodeAt(i);
   }
-  document.getElementById('link-text').value="www.messige.com?d="+linkMsg;
+  var linkText = document.getElementById('link-text');
+  if(linkText!=null){
+    linkText.value="www.messige.com?d="+linkMsg;  
+  }
+  
 
   var xar = [-10, 5, 0 ,-10,-10];
 	var imageObj = new Image();
@@ -83,7 +87,7 @@ function drawMessiMessage(){
 	canvas.height=450;  
 	// imageObj.width="100";
 	// imageObj.height="100";
-	imageObj.src="img/Optimized-canvas.png"; 	
+	imageObj.src="img/messige.png"; 	
 }
 
   function wrapText(context, text, xar, y, maxWidth, lineHeight) {

@@ -1,19 +1,15 @@
-    <?php
+<?php
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
         $message = "";
 
-        // print_r($_SERVER);
-        $afterLink="";
-        $messiTitle="Send messiges all over";
         if(isset($_GET["m"])){
             $base62 = $_GET["m"];
             // print_r($_SERVER);
             include_once 'php/data_objects/DAOLink.php';
             $message = getMessageByShort($base62);
-            $afterLink="?m=".$_GET['m'];
-            $messiTitle="Messi escribió un mensaje";
         }
+        
     ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -27,12 +23,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <meta name="og:title" content="Messige.com - <?php echo $messiTitle;?>" />
-        <meta property="og:title" content="Messige.com - <?php echo $messiTitle;?>" />
+        <meta name="og:title" content="Messige.com - Send messiges all over" />
+        <meta property="og:title" content="Messige.com - Send messiges all over" />
         <meta name="og:description" content="Because Messi's got a better way to say it" />
         <meta property="og:description" content="Because Messi's got a better way to say it" />
-        <meta name="og:url" content="http://messige.com<?php echo $afterLink?>" />
-        <meta property="og:url" content="http://messige.com<?php echo $afterLink?>"/>
+        <meta name="og:url" content="http://messige.com/msg.php?<?php echo $_GET["m"]?>" />
+        <meta property="og:url" content="http://messige.com/msg.php?<?php echo $_GET["m"]?>"/>
         <meta name="og:image" content="http://messige.com/img/messige.png" />
         <meta property="og:image" content="http://messige.com/img/messige.png" />
 
@@ -56,7 +52,7 @@
 
 
     </head>
-
+    
     <!-- 420051148085813 -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -86,25 +82,16 @@
             <canvas id="canv" style="display:none;"></canvas>
             <img id="canvasImg" alt="Right click to save me!">
 
-            <div style="font-family: Ubuntu">Just type whatever you want, save the image (right click), and share it!</div>
             <form action="php/makelink.php" method="POST">
                 <input id="message" name="message"
                     maxlength="41"  
+                    style="display:none;"
                     class="txtMsg" onkeyup="drawMessiMessage()" type="text"value="<?php echo $message;?>"/>
-                <!-- <div style="font-family: Ubuntu">Alternatively, you can share by copying this link</div> -->
-                <!-- <input id="link-text" 
-                     type="text" 
-                     value="<?php echo $message?>"/> -->
-                <input type="submit" value="create link"/>
             </form>
             <br/>
             <!-- AddThis Button BEGIN -->
-           <!--  <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
-                 style="position: absolute;right: 20px;"
-                 addthis:url="http://messige.com"
-                 addthis:image="http://messige.com/img/messige.png"
-                 addthis:title="Messi has a message for you"
-                 addthis:description="Messi has got a message for you">
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
+                 style="position: absolute;right: 20px;">
 
                 <a class="addthis_button_facebook at300b"
                     title="Facebook" href="#">
@@ -131,14 +118,13 @@
                         </span>
                     </span>
                 </a>
-            </div> -->
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513f98e345d9ec02"></script>
             <!-- AddThis Button END -->
 
-            
-            <a target="_blank" style="text-align: right;display:block" href="http://facebook.com/sharer.php?u=messige.com<?php echo $afterLink?>">
-                <img src="img/fb_share.gif" style="cursor: hand; cursor: pointer; "/>
-            </a>
             <fb:like href="http://messige.com" layout="standard" width="100px" show_faces="true" font="verdana"></fb:like>
+
         </div>
         
         <!-- Add your site or application content here -->
