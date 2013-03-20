@@ -1,6 +1,4 @@
     <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', '1');
         $message = "";
 
         // print_r($_SERVER);
@@ -31,8 +29,8 @@
         <meta property="og:title" content="Messige.com - <?php echo $messiTitle;?>" />
         <meta name="og:description" content="Because Messi's got a better way to say it" />
         <meta property="og:description" content="Because Messi's got a better way to say it" />
-        <meta name="og:url" content="http://messige.com<?php echo $afterLink?>" />
-        <meta property="og:url" content="http://messige.com<?php echo $afterLink?>"/>
+        <meta name="og:url" content="http://messige.com<?php echo $_GET["m"]?>" />
+        <meta property="og:url" content="http://messige.com<?php echo $_GET["m"]?>"/>
         <meta name="og:image" content="http://messige.com/img/messige.png" />
         <meta property="og:image" content="http://messige.com/img/messige.png" />
 
@@ -95,7 +93,7 @@
                 <!-- <input id="link-text" 
                      type="text" 
                      value="<?php echo $message?>"/> -->
-                <input type="submit" value="create link"/>
+                <input type="submit" value="or create link"/>
             </form>
             <br/>
             <!-- AddThis Button BEGIN -->
@@ -135,9 +133,9 @@
             <!-- AddThis Button END -->
 
             
-            <a target="_blank" style="text-align: right;display:block" href="http://facebook.com/sharer.php?u=messige.com<?php echo $afterLink?>">
+<!--             <a target="_blank" style="text-align: right;display:block" href="http://facebook.com/sharer.php?u=messige.com<?php echo $afterLink?>">
                 <img src="img/fb_share.gif" style="cursor: hand; cursor: pointer; "/>
-            </a>
+            </a> -->
             <fb:like href="http://messige.com" layout="standard" width="100px" show_faces="true" font="verdana"></fb:like>
         </div>
         

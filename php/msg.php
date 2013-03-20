@@ -1,6 +1,4 @@
 <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', '1');
         $message = "";
 
         if(isset($_GET["m"])){
@@ -9,6 +7,11 @@
             include_once 'php/data_objects/DAOLink.php';
             $message = getMessageByShort($base62);
         }
+        function encodeURIComponent($str) {
+            $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+            return strtr(rawurlencode($str), $revert);
+        }
+        // print_r($_SERVER);
         
     ?>
 <!DOCTYPE html>
@@ -27,8 +30,8 @@
         <meta property="og:title" content="Messige.com - Send messiges all over" />
         <meta name="og:description" content="Because Messi's got a better way to say it" />
         <meta property="og:description" content="Because Messi's got a better way to say it" />
-        <meta name="og:url" content="http://messige.com/msg.php?<?php echo $_GET["m"]?>" />
-        <meta property="og:url" content="http://messige.com/msg.php?<?php echo $_GET["m"]?>"/>
+        <meta name="og:url" content="http://messige.com/msg.php?m=<?php echo $_GET["m"]?>" />
+        <meta property="og:url" content="http://messige.com/msg.php?m=<?php echo $_GET["m"]?>"/>
         <meta name="og:image" content="http://messige.com/img/messige.png" />
         <meta property="og:image" content="http://messige.com/img/messige.png" />
 
@@ -49,21 +52,12 @@
         <!-- <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'> -->
         <!-- <link href='http://fonts.googleapis.com/css?family=Cedarville+Cursive' rel='stylesheet' type='text/css'> -->
         <!-- <script src="js/main.js"></script> -->
-
+        <script src="js/plugins.js"></script>
+        <script src="js/canv.js"></script>
 
     </head>
     
-    <!-- 420051148085813 -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420051148085813";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <body>
+    <body style="background-color: black">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
@@ -71,16 +65,9 @@
             <h1>messigi.com</h1>
         </div> -->
         <div class="siteHolder animated fadeInDown">
-            <h1 style="font-family: Ubuntu; color:#1ba1e2;
-                font-size:5em;
-                margin:0;">
-                Messige.com</h1>
-            <h2 style="font-family: Ubuntu; 
-                margin:0;"> 
-                Make Messi message you!</h2>
 
             <canvas id="canv" style="display:none;"></canvas>
-            <img id="canvasImg" alt="Right click to save me!">
+            <img style="padding-top: 20%" id="canvasImg" alt="Right click to save me!">
 
             <form action="php/makelink.php" method="POST">
                 <input id="message" name="message"
@@ -89,41 +76,12 @@
                     class="txtMsg" onkeyup="drawMessiMessage()" type="text"value="<?php echo $message;?>"/>
             </form>
             <br/>
-            <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
-                 style="position: absolute;right: 20px;">
-
-                <a class="addthis_button_facebook at300b"
-                    title="Facebook" href="#">
-                    <span class=" at300bs at15nc at15t_facebook">
-                        <span class="at_a11y">Share on facebook</span>
-                    </span>
-                </a>
-
-                <a 
-                    addthis:url="" 
-                    addthis:description="" 
-                    class="addthis_button_twitter at300b" title="Tweet" 
-                    href="#">
-                    <span class=" at300bs at15nc at15t_twitter">
-                        <span class="at_a11y">Share on twitter</span>
-                    </span>
-                </a>
-                <a class="addthis_button_google_plusone_share at300b" 
-                    href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=ra-4feb83083011e6dd&amp;source=tbx32-300&amp;lng=en-US&amp;s=google_plusone_share&amp;url=http%3A%2F%2Fcodeforces.com%2FbestRatingChanges%2F211639&amp;title=erreze%20-%20Impressive%20Success%20on%20Codeforces&amp;ate=AT-ra-4feb83083011e6dd/-/-/513f97469e36948f/2&amp;frommenu=1&amp;uid=513f9746d273e3b2&amp;description=Wow!%20Coder%20erreze%20competed%20in%20Codeforces%20Round%20%23168%20(Div.%202)%20and%20gained%20%2B95%20rating%20points%20taking%20place%20574&amp;ct=1&amp;pre=http%3A%2F%2Fcodeforces.com%2Fprofile%2Ferreze&amp;tt=0&amp;captcha_provider=nucaptcha" 
-                    target="_blank" 
-                    title="Google+">
-                    <span class=" at300bs at15nc at15t_google_plusone_share">
-                        <span class="at_a11y">Share on google_plusone_share
-                        </span>
-                    </span>
-                </a>
-            </div>
-            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513f98e345d9ec02"></script>
-            <!-- AddThis Button END -->
-
-            <fb:like href="http://messige.com" layout="standard" width="100px" show_faces="true" font="verdana"></fb:like>
+            <a style="font-size:12px;
+                font-family: 'Nothing you Could do'"
+                href="./?m=<?php echo $base62 ?>">Edit</a>
+            <a target="_blank" style="text-align: right;display:block" href="http://facebook.com/sharer.php?u=<?php echo encodeURIComponent($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);?>">
+                <img src="img/fb_share.gif" style="cursor: hand; cursor: pointer; "/>
+            </a>
 
         </div>
         
@@ -131,8 +89,8 @@
         <!-- <p id="para">Hello world! This is HTML5 Boilerplate.</p> -->
 
         
-        <script src="js/plugins.js"></script>
-        <script src="js/canv.js"></script>
+        
+
         
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

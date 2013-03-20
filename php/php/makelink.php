@@ -12,7 +12,7 @@ if(!isset($_POST['message'])){
 $message = $_POST['message'];
 // echo $message;
 if(strlen(trim($message))==0){
-	header( 'Location: '.$_SERVER['HTTP_ORIGIN']);
+	header( 'Location: '.$_SERVER['HTTP_HOST']);
 	die;
 }
 	
@@ -21,5 +21,5 @@ include_once 'data_objects/DAOLink.php';
 $shortM = storeMessage($message);
 // echo $shortM;
 // print_r($_SERVER);
-header( 'Location: '. $_SERVER['HTTP_ORIGIN'].'/?m='.$shortM );
+header( 'Location: http://'. $_SERVER['HTTP_HOST'].'/msg.php?m='.$shortM );
 ?>
