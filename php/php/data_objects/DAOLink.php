@@ -3,6 +3,38 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 	include_once $_SERVER['DOCUMENT_ROOT'].'/php/db.php';
+
+
+    function getAllMessages(){
+        $sql = "SELECT message_id, short, message FROM messages ORDER BY message_id DESC";
+        try{
+            $db = getPDOConn();
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $data;
+        }catch (PDOException $e){
+            echo($e);
+            return false;
+        }
+    }
+
+    function getMessages(){
+        $con = getConn();
+        include_once $_SERVER['DOCUMENT_ROOT'].'/php/utils/Utils.php';
+        // $con->query("SELECT short FROM messages where messages_id=".$id);
+
+        if($stmt = $con->query("SELECT message_id, short, message FROM messages")){
+//            $stmt->execute();
+//            $stmt->bind_result($result);
+            $result = $stmt->fetch_all();
+            if ($result) {
+                return $result;
+            }
+        }
+        return "";
+    }
+
 	function storeMessage($message){
 		// echo 'ola q ase link';
 		$con = getConn();
